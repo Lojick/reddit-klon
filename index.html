@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Mini-Reddit</title>
-    <script src="script.js" defer></script>
+    <script src="index.js" defer></script>
     <link href="style.css" type="text/css" rel="stylesheet">
 </head>
 
@@ -13,7 +13,7 @@
         <h1>REDDIT-KLON</h1>
         <h4>Let's post!</h4>
     </header>
-    <div class="wrapper">
+    <div id="wrapper">
         <div id="posts-container">
             <h3>Senaste inläggen:</h3>
         </div>
@@ -23,7 +23,9 @@
             <input type="text" id="post-title" placeholder="Titel" required />
             <textarea id="post-body" placeholder="Inläggstext" required></textarea>
             <input type="text" id="post-tags" placeholder="Taggar (separera med kommatecken)" />
-            <select id="user-select"></select>
+            <select class="user-select">
+                <option value="" selected disabled>Välj användare</option>
+            </select>
             <button type="submit">Posta</button>
         </form>
     </div>

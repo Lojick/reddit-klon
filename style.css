@@ -14,11 +14,11 @@ header {
     margin-top: -10px;
 }
 
-.wrapper {
+#wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
 }
 
 #post-form {
@@ -49,51 +49,82 @@ input,
 textarea,
 select {
     padding: 8px;
-    width: 90%;
+    width: 400px;
     border-radius: 5px;
     box-sizing: border-box;
     resize: vertical;
 }
 
 button {
-    width: 20%;
-    height: 10%;
+    width: 100px;
+    height: 40px;
     border-radius: 5px;
 }
+
 /*index.html slutar här*/
 
 /* post.html börjar här */
-
-#post-content {
+#wrapper2 {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
+}
+
+
+#post-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 90%;
-    height: 600px;
+    height: 500px;
+    gap: 10px;
+    background-color: #A1A5A5;
+    margin-top: 30px;
+}
+
+#reactions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 10px solid #6E7272;
+    width: 100%;
+    margin-bottom: -40px;
+}
+
+#like-btn,
+#dislike-btn {
+    height: 40px;
+    width: 3%;
+    font-size: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#comments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 500px;
     gap: 10px;
     background-color: #A1A5A5;
     margin: 0 auto;
     margin-top: 30px;
 }
-#post-details {
+
+#comment-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-#reactions {
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 20px;
-}
-
-#like-btn, #dislike-btn {
-    height: 40px;
-    width: 100%;
-    font-size: 15px;
-    padding: 10px;
-    border-radius: 5px;
+    background-color: #A1A5A5;
+    margin-top: 10px;
+    width: 90%;
+    height: 400px;
+    margin: 0 auto;
+    margin-top: 10px;
+    gap: 10px;
 }
