@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini-Reddit - Inlägg</title>
+    <script src="script.js" defer></script> 
+    <link href="style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>REDDIT-KLON</h1>
+        <h4>Let's post!</h4>
+    </header>
+    <div id="post-content">
+    <div id="post-details">
+        <h3 id="post-title">Exempelinlägg</h3>
+        <p id="post-body">Detta är ett exempel på ett inlägg.</p>
+    </div>
+
+    <!-- Reaktioner -->
+    <div id="reactions">
+        <button id="like-btn">👍 <span id="likes-count">0</span></button>
+        <button id="dislike-btn">👎 <span id="dislikes-count">0</span></button>
+    </div>
+
+    <h3>Kommentarer:</h3>
+    <div id="comments"></div>
+</div>
+    <h3>Ny kommentar:</h3>
+    <form id="comment-form">
+        <textarea id="comment-body" placeholder="Skriv kommentar" required></textarea>
+        <button type="submit">Kommentera</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mini-Reddit</title>
+    <script src="script.js" defer></script>
+    <link href="style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>REDDIT-KLON</h1>
+        <h4>Let's post!</h4>
+    </header>
+    <div class="wrapper">
+        <div id="posts-container">
+            <h3>Senaste inläggen:</h3>
+        </div>
+
+        <form id="post-form">
+            <h3>Skapa nytt inlägg:</h3>
+            <input type="text" id="post-title" placeholder="Titel" required />
+            <textarea id="post-body" placeholder="Inläggstext" required></textarea>
+            <input type="text" id="post-tags" placeholder="Taggar (separera med kommatecken)" />
+            <select id="user-select"></select>
+            <button type="submit">Posta</button>
+        </form>
+    </div>
+</body>
+
+</html>
