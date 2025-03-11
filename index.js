@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
         // ✅ Hämta användare först
-        const usersResponse = await fetch("https://dummyjson.com/users");
+        const usersResponse = await fetch("https://dummyjson.com/users?limit=0"); // Nu kan man få fram exakt alla användare
         const usersData = await usersResponse.json();
         users = usersData.users;
         window.users = users; // Uppdatera den globala variabeln
