@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Mini-Reddit</title>
-    <script src="index.js" defer></script>
     <link href="style.css" type="text/css" rel="stylesheet">
 </head>
 
@@ -23,12 +22,13 @@
             <input type="text" id="post-title" placeholder="Titel" required />
             <textarea id="post-body" placeholder="Inläggstext" required></textarea>
             <input type="text" id="post-tags" placeholder="Taggar (separera med kommatecken)" />
-            <select class="user-select">
+            <select id="user-select">
                 <option value="" selected disabled>Välj användare</option>
             </select>
             <button type="submit">Posta</button>
         </form>
     </div>
+    <script src="index.js"></script>
 </body>
 
 </html>
