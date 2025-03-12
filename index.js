@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             body: body,
             tags: tags,
             userId: Number(userId), // Se till att userId är ett nummer
-            reactions: 0 // Sätter antal reaktioner till 0
+            reactions: { likes: 0, dislikes: 0, total: 0 }
         };
 
         console.log("📝 Nytt inlägg skapat:", newPost);
@@ -103,3 +103,4 @@ function renderPosts(posts, users) {
         postsContainer.appendChild(postElement);
     });
 }
+

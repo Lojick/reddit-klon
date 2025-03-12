@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Mini-Reddit - Inlägg</title>
-    <script src="post.js" defer></script>
     <link href="style.css" type="text/css" rel="stylesheet">
 </head>
 
@@ -13,29 +12,24 @@
         <h1>REDDIT-KLON</h1>
         <h4>Let's post!</h4>
     </header>
+    <button id="back-to-home">⬅ Tillbaka till startsidan</button>
     <div id="wrapper2">
-        <div id="post-details">
-            <h3 id="post-title">Exempelinlägg</h3>
-            <p id="post-body">Detta är ett exempel på ett inlägg.</p>
-        </div>
-        <!-- Reaktioner -->
-        <div id="reactions">
-            <button id="like-btn">👍 <span id="likes-count">0</span></button>
-            <button id="dislike-btn">👎 <span id="dislikes-count">0</span></button>
-        </div>
+        <div id="post-details"></div> <!-- 🔹 Inlägget genereras här -->
+
 
         <div id="comments">
-            <h3>Kommentarer:</h3>
         </div>
-        <form id="comment-form">
-            <h3>Ny kommentar:</h3>
-            <textarea id="comment-body" placeholder="Skriv kommentar" required></textarea>
-            <select class="user-select">
-                <option value="" selected disabled>Välj användare</option>
-            </select>
-            <button type="submit">Kommentera</button>
-        </form>
     </div>
+    <form id="comment-form">
+        <h3>Ny kommentar:</h3>
+        <textarea id="comment-body" placeholder="Skriv kommentar" required></textarea>
+        <select id="comment-user">
+            <option value="" selected disabled>Välj användare</option>
+        </select>
+        <button type="submit">Kommentera</button>
+    </form>
+    </div>
+    <script src="post.js"></script>
 </body>
 
 </html>

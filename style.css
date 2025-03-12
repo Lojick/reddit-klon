@@ -37,16 +37,20 @@ header {
 
 #posts-container {
     display: flex;
-    flex-direction: column; /* Gör så att inläggen staplas på varandra */
+    flex-direction: column;
+    /* Gör så att inläggen staplas på varandra */
     align-items: center;
-    gap: 15px; /* Skapar avstånd mellan inläggen */
+    gap: 15px;
+    /* Skapar avstånd mellan inläggen */
     background-color: #A1A5A5;
     border-radius: 20px;
     height: 600px;
-    width: 40%; /* Anpassa bredden efter behov */
+    width: 40%;
+    /* Anpassa bredden efter behov */
     margin-top: 30px;
     padding: 20px;
-    overflow-y: auto; /* Aktivera scroll inuti containern */
+    overflow-y: auto;
+    /* Aktivera scroll inuti containern */
 }
 
 /* Stil för varje inlägg */
@@ -55,7 +59,8 @@ header {
     padding: 15px;
     border-radius: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    width: 90%; /* Gör så att inläggen inte tar hela bredden */
+    width: 90%;
+    /* Gör så att inläggen inte tar hela bredden */
 }
 
 
@@ -91,28 +96,41 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
+    width: 60%;
     height: 500px;
-    gap: 10px;
+    gap: 40px;
     background-color: #A1A5A5;
     margin-top: 30px;
+    border-radius: 10px;
+}
+
+#post-details h3,
+.comment h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#post-details p,
+.comment p {
+    font-size: 18px;
+    margin: 5px 0;
+    text-align: center;
 }
 
 #reactions {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    border-bottom: 10px solid #6E7272;
+    gap: 20px;
     width: 100%;
-    margin-bottom: -40px;
 }
 
 #like-btn,
 #dislike-btn {
-    height: 40px;
-    width: 3%;
-    font-size: 15px;
+    height: 50px;
+    width: 4%;
+    font-size: 14px;
     border-radius: 5px;
     margin-bottom: 10px;
 }
@@ -121,13 +139,30 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
+    width: 60%;
     height: 500px;
-    gap: 10px;
+    gap: 20px;
     background-color: #A1A5A5;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 10px;
+    border-radius: 10px;
+    overflow-y: auto;
+    /* Aktivera scroll inuti containern */
 }
+
+.comment {
+    border-bottom: 5px solid #6E7272;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+
+}
+
+#comments h3 {
+    font-size: 24px;
+}
+
 
 #comment-form {
     display: flex;
@@ -136,9 +171,30 @@ button {
     align-items: center;
     background-color: #A1A5A5;
     margin-top: 10px;
-    width: 80%;
+    width: 60%;
     height: 400px;
     margin: 0 auto;
-    margin-top: 10px;
+    margin-top: 20px;
     gap: 10px;
+    border-radius: 10px;
+}
+
+#back-to-home {
+    background-color: #2C3E50; /* Mörkgrå/blå ton som passar temat */
+    color: white;
+    padding: 12px 24px;
+    height:100px;
+    width: 150px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#back-to-home:hover {
+    background-color: #1A252F; /* Ännu mörkare blågrå */
+    transform: scale(1.05); /* Liten förstoring vid hover */
 }
