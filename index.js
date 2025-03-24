@@ -1,27 +1,24 @@
 document.addEventListener("DOMContentLoaded", async () => {
     let posts = JSON.parse(localStorage.getItem("posts")) || [];
-    let users = []; // Global variabel för användare
+    let users = [];
 
     try {
-        // ✅ Hämta användare först
-        const usersResponse = await fetch("https://dummyjson.com/users?limit=0"); // Nu kan man få fram exakt alla användare
+        // Hämtar alla användare och fyller dropdown-listan
+        const usersResponse = await fetch("https://dummyjson.com/users?limit=0");
         const usersData = await usersResponse.json();
         users = usersData.users;
-        window.users = users; // Uppdatera den globala variabeln
-        console.log("✅ Användare hämtade:", users);
 
-        // ✅ Fyll dropdown med användare
         const userSelect = document.getElementById("user-select");
         userSelect.innerHTML = '<option value="" disabled selected>Välj användare</option>';
 
         users.forEach(user => {
-            let option = document.createElement("option");
+            const option = document.createElement("option");
             option.value = user.id;
             option.textContent = user.username;
             userSelect.appendChild(option);
         });
 
-        // ✅ Hämta inlägg efter att användarna laddats
+        // Hämtar inlägg från API bara om inga finns sparade lokalt
         if (posts.length === 0) {
             const postsResponse = await fetch("https://dummyjson.com/posts");
             const postsData = await postsResponse.json();
@@ -29,20 +26,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             localStorage.setItem("posts", JSON.stringify(posts));
         }
 
-        console.log("✅ Inlägg hämtade:", posts);
-        console.log("✅ Användare innan rendering:", users);
-
-        // ✅ Rendera inlägg med rätt användarnamn
         renderPosts(posts, users);
     } catch (error) {
-        console.error("❌ Fel vid hämtning av data:", error);
+        console.error("Fel vid hämtning av data:", error);
     }
 
-    // ✅ Lyssna på formuläret för att skapa nytt inlägg
+    // Skapar nytt inlägg och uppdaterar både lokal lagring och gränssnittet
     document.getElementById("post-form").addEventListener("submit", (e) => {
-        e.preventDefault(); // Förhindra sidans omladdning
+        e.preventDefault();
 
-        // Hämta värden från formuläret
         const title = document.getElementById("post-title").value;
         const body = document.getElementById("post-body").value;
         const tags = document.getElementById("post-tags").value.split(",").map(tag => tag.trim());
@@ -53,31 +45,23 @@ document.addEventListener("DOMContentLoaded", async () => {
             return;
         }
 
-        // ✅ Skapa nytt inläggsobjekt
-        let newPost = {
-            id: Date.now(), // Unikt ID
+        const newPost = {
+            id: Date.now(), // Använder aktuell tid som unikt ID
             title: title,
             body: body,
             tags: tags,
-            userId: Number(userId), // Se till att userId är ett nummer
+            userId: Number(userId),
             reactions: { likes: 0, dislikes: 0, total: 0 }
         };
 
-        console.log("📝 Nytt inlägg skapat:", newPost);
-
-        // ✅ Lägg till inlägget i listan och spara i localStorage
         posts.unshift(newPost);
         localStorage.setItem("posts", JSON.stringify(posts));
-
-        // ✅ Uppdatera inläggslistan på sidan
         renderPosts(posts, users);
-
-        // ✅ Rensa formuläret
         document.getElementById("post-form").reset();
     });
 });
 
-// ✅ Uppdaterad `renderPosts`-funktion med felsökning
+// Renderar inläggen tillsammans med tillhörande användarnamn
 function renderPosts(posts, users) {
     const postsContainer = document.getElementById("posts-container");
     postsContainer.innerHTML = "<h3>Senaste inläggen:</h3>";
@@ -86,11 +70,8 @@ function renderPosts(posts, users) {
         const postElement = document.createElement("div");
         postElement.classList.add("post");
 
-        // ✅ Hitta rätt användarnamn baserat på userId
-        const user = users.find(user => user.id == post.userId);
+        const user = users.find(user => user.id === post.userId);
         const username = user ? user.username : `Användare ${post.userId}`;
-
-        console.log(`🔍 Post-ID: ${post.id}, User-ID: ${post.userId}, Användare:`, user);
 
         postElement.innerHTML = `
             <h3>${post.title}</h3>
@@ -103,4 +84,3 @@ function renderPosts(posts, users) {
         postsContainer.appendChild(postElement);
     });
 }
-

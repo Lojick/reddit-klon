@@ -8,27 +8,37 @@
 </head>
 
 <body>
+    <!-- Sidhuvud med rubrik och underrubrik -->
     <header>
         <h1>REDDIT-KLON</h1>
         <h4>Let's post!</h4>
     </header>
+
+    <!-- Knapp för att gå tillbaka till startsidan -->
     <button id="back-to-home">⬅ Tillbaka till startsidan</button>
+
     <div id="wrapper2">
-        <div id="post-details"></div> <!-- 🔹 Inlägget genereras här -->
+        <!-- Detaljerad visning av valt inlägg (fylls dynamiskt med JavaScript) -->
+        <div id="post-details"></div>
 
-
-        <div id="comments">
-        </div>
+        <!-- Sektion för kommentarer (fylls dynamiskt) -->
+        <div id="comments"></div>
     </div>
+
+    <!-- Formulär för att lägga till en ny kommentar -->
     <form id="comment-form">
         <h3>Ny kommentar:</h3>
         <textarea id="comment-body" placeholder="Skriv kommentar" required></textarea>
+        
+        <!-- Dropdown för att välja vilken användare som kommenterar -->
         <select id="comment-user">
             <option value="" selected disabled>Välj användare</option>
         </select>
+        
         <button type="submit">Kommentera</button>
     </form>
-    </div>
+
+    <!-- JavaScript-fil för funktionaliteten på denna sida -->
     <script src="post.js"></script>
 </body>
 
