@@ -102,6 +102,8 @@ button {
     background-color: #A1A5A5;
     margin-top: 30px;
     border-radius: 10px;
+    overflow-y: auto;    /* Gör så att scroll visas om innehållet blir för långt */
+    padding: 10px;       /* Lite extra padding för snyggare utseende */
 }
 
 #post-details h3,

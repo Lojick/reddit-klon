@@ -151,6 +151,16 @@ function updateReactions() {
     }
 }
 
+//Kontrollera om användaren redan reagerat
+function hasUserReacted(postId) {
+    return localStorage.getItem(`reacted_${postId}`) === "true";
+}
+
+//Sätt att användaren har reagerat
+function setUserReacted(postId) {
+    localStorage.setItem(`reacted_${postId}`, "true");
+}
+
 // Visa inlägget och lägg till event listeners
 async function displayPost() {
     await fetchUsersIfNeeded();
@@ -173,16 +183,26 @@ async function displayPost() {
     `;
 
     document.getElementById('like-btn').addEventListener('click', () => {
+        if (hasUserReacted(postId)) {
+            alert("Du har redan reagerat på detta inlägg.");
+            return;
+        }
         post.reactions.likes += 1;
         post.reactions.total += 1;
         updateReactions();
+        setUserReacted(postId);
     });
-
+    
     document.getElementById('dislike-btn').addEventListener('click', () => {
+        if (hasUserReacted(postId)) {
+            alert("Du har redan reagerat på detta inlägg.");
+            return;
+        }
         post.reactions.dislikes += 1;
         post.reactions.total += 1;
         updateReactions();
-    });
+        setUserReacted(postId);
+    });    
 
     fetchComments();
     populateUserDropdown();
