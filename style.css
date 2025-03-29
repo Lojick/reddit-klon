@@ -137,6 +137,18 @@ button {
     margin-bottom: 10px;
 }
 
+.reacted-like {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+.reacted-dislike {
+    background-color: #F44336;
+    color: white;
+    font-weight: bold;
+}
+
 #comments {
     display: flex;
     flex-direction: column;

@@ -138,27 +138,47 @@ function addComment(event) {
     document.getElementById("comment-user").value = "";
 }
 
-// Uppdatera och spara reaktioner
+// Lägger till visuell färg på rätt knapp (like/dislike) baserat på sparad reaktion
+function updateReactionButtons(postId) {
+    const reaction = getUserReaction(postId);
+    const likeBtn = document.getElementById('like-btn');
+    const dislikeBtn = document.getElementById('dislike-btn');
+
+    likeBtn.classList.remove('reacted', 'reacted-like');
+    dislikeBtn.classList.remove('reacted', 'reacted-dislike');
+
+    if (reaction === "like") {
+        likeBtn.classList.add('reacted', 'reacted-like');
+    } else if (reaction === "dislike") {
+        dislikeBtn.classList.add('reacted', 'reacted-dislike');
+    }
+}
+//Kontrollerar om användaren redan har reagerat på inlägget (like/dislike)
+function getUserReaction(postId) {
+    return localStorage.getItem(`reaction_${postId}`); // "like", "dislike", eller null
+}
+
+// Sparar eller tar bort användarens reaktion (like/dislike) i localStorage
+function setUserReaction(postId, reaction) {
+    if (reaction) {
+        localStorage.setItem(`reaction_${postId}`, reaction);
+    } else {
+        localStorage.removeItem(`reaction_${postId}`);
+    }
+}
+
+// Uppdaterar siffrorna i gränssnittet och sparar nya reaktionsvärden i localStorage
 function updateReactions() {
     document.getElementById('likes-count').textContent = post.reactions.likes;
     document.getElementById('dislikes-count').textContent = post.reactions.dislikes;
-    document.getElementById('reactions-count').textContent = post.reactions.total || 0;
+    document.getElementById('reactions-count').textContent = post.reactions.total;
 
+    // Spara tillbaka i localStorage
     const postIndex = posts.findIndex(p => p.id == postId);
     if (postIndex !== -1) {
         posts[postIndex] = post;
         localStorage.setItem('posts', JSON.stringify(posts));
     }
-}
-
-//Kontrollera om användaren redan reagerat
-function hasUserReacted(postId) {
-    return localStorage.getItem(`reacted_${postId}`) === "true";
-}
-
-//Sätt att användaren har reagerat
-function setUserReacted(postId) {
-    localStorage.setItem(`reacted_${postId}`, "true");
 }
 
 // Visa inlägget och lägg till event listeners
@@ -177,32 +197,59 @@ async function displayPost() {
         <p><strong>Taggar:</strong> ${post.tags ? post.tags.join(", ") : "Inga taggar"}</p>
         <p><strong>Totala reaktioner:</strong> <span id="reactions-count">${post.reactions.total}</span></p>
         <div id="reactions">
-            <button id="like-btn">👍 <span id="likes-count">${post.reactions.likes}</span></button>
-            <button id="dislike-btn">👎 <span id="dislikes-count">${post.reactions.dislikes}</span></button>
+           <button id="like-btn">👍 <span id="likes-count">${post.reactions.likes}</span></button>
+<button id="dislike-btn">👎 <span id="dislikes-count">${post.reactions.dislikes}</span></button>
+
         </div>
     `;
 
-    document.getElementById('like-btn').addEventListener('click', () => {
-        if (hasUserReacted(postId)) {
-            alert("Du har redan reagerat på detta inlägg.");
-            return;
+    const likeBtn = document.getElementById('like-btn');
+    const dislikeBtn = document.getElementById('dislike-btn');
+
+    likeBtn.addEventListener('click', () => {
+        const current = getUserReaction(postId);
+
+        if (current === "like") {
+            post.reactions.likes -= 1;
+            post.reactions.total -= 1;
+            setUserReaction(postId, null);
+        } else {
+            if (current === "dislike") {
+                post.reactions.dislikes -= 1;
+            } else {
+                post.reactions.total += 1;
+            }
+            post.reactions.likes += 1;
+            setUserReaction(postId, "like");
         }
-        post.reactions.likes += 1;
-        post.reactions.total += 1;
+
         updateReactions();
-        setUserReacted(postId);
+        updateReactionButtons(postId);
     });
-    
-    document.getElementById('dislike-btn').addEventListener('click', () => {
-        if (hasUserReacted(postId)) {
-            alert("Du har redan reagerat på detta inlägg.");
-            return;
+
+    dislikeBtn.addEventListener('click', () => {
+        const current = getUserReaction(postId);
+
+        if (current === "dislike") {
+            post.reactions.dislikes -= 1;
+            post.reactions.total -= 1;
+            setUserReaction(postId, null);
+        } else {
+            if (current === "like") {
+                post.reactions.likes -= 1;
+            } else {
+                post.reactions.total += 1;
+            }
+            post.reactions.dislikes += 1;
+            setUserReaction(postId, "dislike");
         }
-        post.reactions.dislikes += 1;
-        post.reactions.total += 1;
+
         updateReactions();
-        setUserReacted(postId);
-    });    
+        updateReactionButtons(postId);
+    });
+
+    //Anropa en gång till så färgerna på reaktionerna uppdateras när man uppdaterar sidan.
+    updateReactionButtons(postId);
 
     fetchComments();
     populateUserDropdown();
