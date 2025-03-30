@@ -197,8 +197,8 @@ async function displayPost() {
         <p><strong>Taggar:</strong> ${post.tags ? post.tags.join(", ") : "Inga taggar"}</p>
         <p><strong>Totala reaktioner:</strong> <span id="reactions-count">${post.reactions.total}</span></p>
         <div id="reactions">
-           <button id="like-btn">👍 <span id="likes-count">${post.reactions.likes}</span></button>
-<button id="dislike-btn">👎 <span id="dislikes-count">${post.reactions.dislikes}</span></button>
+           <button id="like-btn" class="react-btn">👍 <span id="likes-count">${post.reactions.likes}</span></button>
+<button id="dislike-btn" class="react-btn">👎 <span id="dislikes-count">${post.reactions.dislikes}</span></button>
 
         </div>
     `;

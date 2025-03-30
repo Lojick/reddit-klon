@@ -78,7 +78,7 @@ function renderPosts(posts, users) {
             <p>${post.body.substring(0, 60)}...</p>
             <p><strong>Taggar:</strong> ${post.tags.join(", ")}</p>
             <p><strong>Skapad av:</strong> ${username}</p> 
-            <a href="post.html?id=${post.id}">Läs mer</a>
+            <a href="post.html?id=${post.id}" class="read-more-btn">Läs mer</a>
         `;
 
         postsContainer.appendChild(postElement);
